@@ -47,6 +47,10 @@ class Tracking
     {
         $key = Helper::serializeID($idData);
         self::$inner[ $key ] -= $batchIdx;
-        return self::$inner[ $key ] == 0;
+        $isZero = self::$inner[ $key ] == 0;
+        if ($isZero) {
+           unset(self::$inner[$key]);
+        }
+        return $isZero;
     }
 }
