@@ -82,7 +82,11 @@ class Message
      */
     protected $options = null;
 
-    protected ?string $partitionKey = null;
+
+    /**
+     * @var string|null
+     */
+    protected $partitionKey = null;
 
     /**
      * @param MessageIdData $id
@@ -94,17 +98,18 @@ class Message
      * @param int $batchIdx
      * @param int $redeliveryCount
      * @param MessageCollection|null $properties
+     * @param string|null $partitionKey
      */
-    public function __construct(MessageIdData     $id,
-                                int               $consumerID,
-                                string            $publishTime,
-                                string            $topic,
-                                string            $payload,
-                                int               $batchNums = 1,
-                                int               $batchIdx = 0,
-                                int               $redeliveryCount = 0,
+    public function __construct(MessageIdData      $id,
+                                int                $consumerID,
+                                string             $publishTime,
+                                string             $topic,
+                                string             $payload,
+                                int                $batchNums = 1,
+                                int                $batchIdx = 0,
+                                int                $redeliveryCount = 0,
                                 ?MessageCollection $properties = null,
-                                ?string $partitionKey = null,
+                                ?string            $partitionKey = null
     )
     {
         $this->id = $id;
@@ -201,6 +206,9 @@ class Message
         return $results;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPartitionKey(): ?string
     {
         return $this->partitionKey;
