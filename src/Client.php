@@ -49,7 +49,7 @@ abstract class Client
     /**
      * Class library version
      */
-    const VERSION_ID = '1.4.4';
+    const VERSION_ID = '1.4.5';
 
     /**
      * @var Options

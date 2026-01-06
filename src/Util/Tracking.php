@@ -46,10 +46,14 @@ class Tracking
     public static function tryAck(MessageIdData $idData, int $batchIdx): bool
     {
         $key = Helper::serializeID($idData);
-        self::$inner[ $key ] -= $batchIdx;
-        $isZero = self::$inner[ $key ] == 0;
+        if (isset(self::$inner[ $key ])) {
+            self::$inner[ $key ] -= $batchIdx;
+        }
+
+        $isZero = @self::$inner[ $key ] == 0;
+
         if ($isZero) {
-           unset(self::$inner[$key]);
+            unset(self::$inner[ $key ]);
         }
         return $isZero;
     }
