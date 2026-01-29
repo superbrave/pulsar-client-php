@@ -176,8 +176,8 @@ class TcpLookupService implements LookupService
         // Through the current service agent
         $proxyBrokerServiceUrl = $brokerServiceUrl;
 
-        if ($response->getProxyThroughServiceUrl()) {
-            $brokerServiceUrl = $this->options->data['url'];
+        if ($response->getProxyThroughServiceUrl() || $this->options->offsetExists(Options::PROXY_URL)) {
+            $brokerServiceUrl = $this->options->data[ Options::PROXY_URL ] ?? $this->options->data[ Options::URL ];
         }
 
         return [$brokerServiceUrl, $proxyBrokerServiceUrl];

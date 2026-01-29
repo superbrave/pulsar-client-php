@@ -41,6 +41,10 @@ abstract class Options
      */
     const TOPICS = 'topics';
 
+    /**
+     * @var string
+     */
+    const PROXY_URL = 'proxy_url';
 
     /**
      * @var array
@@ -128,6 +132,14 @@ abstract class Options
     }
 
 
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setProxyUrl(string $url)
+    {
+        $this->data[ self::PROXY_URL ] = $url;
+    }
 
     /**
      * This connection pool is not enabled by default
